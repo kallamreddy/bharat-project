@@ -1,0 +1,63 @@
+﻿@page
+@model TSABanking.Web.Pages.TerminationQueues.IndexModel
+
+@{
+    ViewData["Title"] = "Termination Queue List";
+}
+
+<h1>Termination Queue List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee
+            </th>
+            <th>
+                Bank
+            </th>
+            <th>
+                Company
+            </th>
+            <th>
+                Supervisor
+            </th>
+         
+            <th>
+                Active
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TerminationQueue)
+        {
+            <tr>
+                <td>
+                    @item.User.FirstName @item.User.MiddleInitial @item.User.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bank.BankName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>
+                <td>
+                    @item.SuperVisor.FirstName @item.SuperVisor.MiddleInitial @item.SuperVisor.LastName
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

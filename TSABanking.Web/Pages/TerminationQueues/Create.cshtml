@@ -1,0 +1,52 @@
+﻿@page
+@model TSABanking.Web.Pages.TerminationQueues.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Termination Queue</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Employee</label>
+                <select asp-for="TerminationQueue.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Bank</label>
+                <select asp-for="TerminationQueue.BankId" class="form-control" asp-items="ViewBag.BankId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Company</label>
+                <select asp-for="TerminationQueue.CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Supervisor</label>
+                <select asp-for="TerminationQueue.SuperVisorId" class ="form-control" asp-items="ViewBag.SuperVisorId"></select>
+            </div>
+           
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TerminationQueue.Active" /> @Html.DisplayNameFor(model => model.TerminationQueue.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,61 @@
+﻿@page
+@model TSABanking.Web.Pages.JobChangeQueues.IndexModel
+
+@{
+    ViewData["Title"] = "Job Change Queue List";
+}
+
+<h1>Job Change Queue List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           <th>
+                Employee
+            </th>
+            <th>
+                New Job
+            </th>
+            <th>
+               Old Job
+            </th>
+            <th>
+                Supervisor
+            </th>
+            <th>
+                Active
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.JobChangeQueue)
+        {
+            <tr>
+                <td>
+                    @item.User.FirstName @item.User.MiddleInitial @item.User.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewJob.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OldJob.Name)
+                </td>
+                <td>
+                    @item.SuperVisor.FirstName @item.SuperVisor.MiddleInitial @item.SuperVisor.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

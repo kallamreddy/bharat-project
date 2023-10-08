@@ -1,0 +1,77 @@
+﻿@page
+@model TSABanking.Web.Pages.Banks.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Bank</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Bank.Id" />
+            <input type="hidden" asp-for="Bank.CreatedBy" />
+            <input type="hidden" asp-for="Bank.CreatedDate" />
+            <div class="form-group">
+                <label class="control-label">Bank Name</label>
+                <input asp-for="Bank.BankName" class="form-control" />
+                <span asp-validation-for="Bank.BankName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Abreviation</label>
+                <input asp-for="Bank.Abreviation" class="form-control" />
+                <span asp-validation-for="Bank.Abreviation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Code</label>
+                <input asp-for="Bank.Code" class="form-control" />
+                <span asp-validation-for="Bank.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Company</label>
+                <select id="select-companyId" asp-for="Bank.CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Platform</label>
+                <select id="select-platfrom" asp-for="Bank.Platform" class="form-control" asp-items="ViewBag.Platform"></select>
+                <span asp-validation-for="Bank.Platform" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Comments</label>
+                <textarea asp-for="Bank.Comments" class="form-control"></textarea>
+                <span asp-validation-for="Bank.Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select Applicable Users</label>
+                <select id="select-users" asp-for="Bank.SelectedUsers" multiple="multiple" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bank.Active" /> @Html.DisplayNameFor(model => model.Bank.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#select-companyId,#select-platfrom,#select-users').select2({
+            placeholder: 'Select an option'
+        });
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿@page
+@model TSABanking.Web.Pages.Banks.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Bank</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Bank Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.BankName)
+        </dd>
+        <dt class="col-sm-2">
+            Abreviation
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.Abreviation)
+        </dd>
+        <dt class="col-sm-2">
+            Code
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.Code)
+        </dd>
+        <dt class="col-sm-2">
+            Company Id
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.CompanyId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bank.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.Active)
+        </dd>
+        <dt class="col-sm-2">
+            Platform
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bank.PlatformNavigation.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            Assigned Users
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var name in Model.Bank.SelectedUsers)
+            {
+                @name;
+                <br />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Bank?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

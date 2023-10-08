@@ -1,0 +1,76 @@
+﻿@page
+@model TSABanking.Web.Pages.Users.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="User.Id" />
+            <input type="hidden" asp-for="User.CreatedBy" />
+            <input type="hidden" asp-for="User.CreatedDate" />
+            <div class="form-group">
+                <label class="control-label">Employee Id</label>
+                <input asp-for="User.EmployeeId" class="form-control" />
+                <span asp-validation-for="User.EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">First Name</label>
+                <input asp-for="User.FirstName" class="form-control" />
+                <span asp-validation-for="User.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Last Name</label>
+                <input asp-for="User.LastName" class="form-control" />
+                <span asp-validation-for="User.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Middle Initial</label>
+                <input asp-for="User.MiddleInitial" class="form-control" />
+                <span asp-validation-for="User.MiddleInitial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">User Type</label>
+                <select id="select-usertype" asp-for="User.UserType" class="form-control" asp-items="ViewBag.UserType"></select>
+                <span asp-validation-for="User.UserType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select Applicable Banks</label>
+                <select id="select-banks" asp-for="User.SelectedBanks" multiple="multiple" class="form-control" asp-items="ViewBag.BankId"></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="User.Active" /> @Html.DisplayNameFor(model => model.User.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#select-usertype').select2({
+            placeholder: 'Select an option'
+        });
+        $('#select-banks').select2({
+            placeholder: 'Select an option'
+        });
+    });
+</script>
